@@ -52,3 +52,11 @@ console.log(`Length: ${length}, Special Characters: ${specialChars}, Capital Let
     //concatenate special chars into charPool
     charPool = charPool.concat(special_chars);
   }
+
+  if (includeCapitalLetters) {
+    //concatenate capital letters chars and numbers into charPool
+    charPool = charPool.concat(capitalLetters);
+  }
+  if (includeNumbers) {
+    charPool = charPool.concat(numbers);
+  }

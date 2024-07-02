@@ -49,6 +49,6 @@ console.log(`Length: ${length}, Special Characters: ${specialChars}, Capital Let
   let charPool = [...letters];
 
   if (includeSpecialChars) {
-    // we concatenate special chars into charPool
+    //concatenate special chars into charPool
     charPool = charPool.concat(special_chars);
   }

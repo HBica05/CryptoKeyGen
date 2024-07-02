@@ -42,3 +42,13 @@ function createPassword(length,
     includeNumbers) {
 // Password generation logic goes here
 console.log(`Length: ${length}, Special Characters: ${specialChars}, Capital Letters: ${capitalLetters}, Numbers: ${numbers}`);}
+
+ // Add your password generation logic here
+
+  // spread letters in charPool array
+  let charPool = [...letters];
+
+  if (includeSpecialChars) {
+    // we concatenate special chars into charPool
+    charPool = charPool.concat(special_chars);
+  }

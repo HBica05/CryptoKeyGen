@@ -35,3 +35,10 @@ createPassword(length, specialChars, capitalLetters, numbers);
  * @param {*} capitalLetters 
  * @param {*} numbers 
  */
+
+function createPassword(length, 
+    includeSpecialChars, 
+    includeCapitalLetters, 
+    includeNumbers) {
+// Password generation logic goes here
+console.log(`Length: ${length}, Special Characters: ${specialChars}, Capital Letters: ${capitalLetters}, Numbers: ${numbers}`);}

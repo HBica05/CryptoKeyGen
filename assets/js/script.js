@@ -22,5 +22,16 @@ if (length < 5 || length > 100) {
     return false;
 }
 
-// Call the password creation function
 createPassword(length, specialChars, capitalLetters, numbers);
+{
+// Prevent form submission
+ return false;
+}
+
+/**
+ * docstring...
+ * @param {*} length 
+ * @param {*} specialChars 
+ * @param {*} capitalLetters 
+ * @param {*} numbers 
+ */

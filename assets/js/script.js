@@ -21,3 +21,6 @@ if (length < 5 || length > 100) {
     alert('Only characters between 5 and 100 please :(');
     return false;
 }
+
+// Call the password creation function
+createPassword(length, specialChars, capitalLetters, numbers);

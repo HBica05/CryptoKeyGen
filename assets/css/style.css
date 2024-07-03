@@ -1,12 +1,39 @@
 body {
     background-color: black; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
   }
   .wrapper {
     background-color: #3498db; 
     padding: 20px;
-    margin: 20px;
+    width: 80%; /* Set wrapper width to 70% of viewport width */
+    max-width: 600px; /* Limit maximum width of wrapper */
+    text-align: center; /* Center align text within wrapper */
+    box-sizing: border-box; /* Include padding and border in the width */
   }
   .main-heading {
     color: white; 
+    margin-top: 0; 
+  }
+   
+   form {
+    margin-top: 20px; 
+  }
+  label {
+    color: white; 
+  }
+  button {
+    background-color: #757575; /* Set button background color to a green shade */
+    color: white; /* Set button text color to white */
+    padding: 10px 20px; /* Add padding to the button */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    margin-top: 10px; /* Add space above the button */
+  }
+  button:hover {
+    background-color: #ff0b0b; /* Darken button color on hover */
   }
   

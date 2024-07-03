@@ -15,9 +15,15 @@
 <body>
   <div class="wrapper">
     <h1 class="main-heading">CryptoKeyGen</h1>
+    <!-- Output box for generated password -->
+    <div class="password-output">
+      <label for="generatedPassword">Generated Password:</label>
+      <input type="text" id="generatedPassword" readonly>
+    </div>
+
     <form id="passwordForm">
-      <label for="length">Number of Characters (5-100):</label>
-      <input type="number" id="length" name="length" min="5" max="100" required>
+      <label for="length">Number of Characters (5-32):</label>
+      <input type="number" id="length" name="length" min="5" max="32" required>
       <br>
       <input type="checkbox" id="specialChars" name="specialChars">
       <label for="specialChars">Include Special Characters</label>

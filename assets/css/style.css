@@ -5,25 +5,53 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    font-family: Arial, sans-serif; /* Specify a fallback font family */
+    font-size: 16px; /* Set base font size */
   }
   .wrapper {
-    background-color: #3498db; 
-    padding: 20px;
-    width: 80%; /* Set wrapper width to 70% of viewport width */
-    max-width: 600px; /* Limit maximum width of wrapper */
+    background-color: #3498db;
+    padding: 30px;
+    width: 90%; /* Set wrapper width to 90% of the body width */
+    max-width: 900px; /* Limit maximum width of wrapper */
     text-align: center; /* Center align text within wrapper */
     box-sizing: border-box; /* Include padding and border in the width */
+    min-height: 70vh; /* Set minimum height of wrapper to 70% of viewport height */
+    display: flex; /* Use flexbox to center content vertically */
+    flex-direction: column; /* Align content in a column */
+    justify-content: center; /* Center content vertically */
   }
+
   .main-heading {
     color: white; 
-    margin-top: 0; 
+    margin-top: 0;
+    font-size: 2.5rem;  
   }
-   
+  .password-output {
+    margin-top: 20px;
+  }
+  .password-output label {
+    font-weight: bold;
+  }
+  
+  .password-output input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    margin-top: 8px;
+    box-sizing: border-box;
+  }
+  
    form {
     margin-top: 20px; 
   }
   label {
     color: white; 
+    font-size: 1.2rem;
+  }
+  input[type="number"],
+  input[type="checkbox"] {
+    margin-right: 5px; /* Add space between checkbox and label */
+    font-size: 1rem;
   }
   button {
     background-color: #757575; /* Set button background color to a green shade */
@@ -32,6 +60,7 @@ body {
     border: none; /* Remove default button border */
     cursor: pointer; /* Change cursor to pointer on hover */
     margin-top: 10px; /* Add space above the button */
+    font-size: 1.2rem;
   }
   button:hover {
     background-color: #ff0b0b; /* Darken button color on hover */

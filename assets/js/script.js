@@ -16,7 +16,7 @@ specialChars = document.getElementById('specialChars').checked;
 capitalLetters = document.getElementById('capitalLetters').checked;
 numbers = document.getElementById('numbers').checked;
 
-if (length < 5 || length > 100) {
+if (length < 5 || length > 32) {
     // change this out of an alert and into something that looks nicer
     alert('Only characters between 5 and 100 please :(');
     return false;

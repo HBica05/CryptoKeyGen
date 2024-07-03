@@ -1,0 +1,12 @@
+body {
+    background-color: black; 
+  }
+  .wrapper {
+    background-color: #3498db; 
+    padding: 20px;
+    margin: 20px;
+  }
+  .main-heading {
+    color: white; 
+  }
+  

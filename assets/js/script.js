@@ -67,3 +67,9 @@ console.log(`Length: ${length}, Special Characters: ${specialChars}, Capital Let
       const randomIndex = Math.floor(Math.random() * charPool.length);
       password += charPool[randomIndex];
   }
+  // todo: change this so it shows it on screen
+  console.log('the password is: ', password);
+  
+
+// Add event listener to the form
+document.getElementById('passwordForm').addEventListener('submit', validateForm);

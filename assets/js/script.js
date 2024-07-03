@@ -60,3 +60,10 @@ console.log(`Length: ${length}, Special Characters: ${specialChars}, Capital Let
   if (includeNumbers) {
     charPool = charPool.concat(numbers);
   }
+  let password = '';
+  // we loop for requested password length and use random to select 
+  // a letter from the charPool
+  for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charPool.length);
+      password += charPool[randomIndex];
+  }

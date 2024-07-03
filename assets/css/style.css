@@ -11,8 +11,8 @@ body {
   .wrapper {
     background-color: rgb(0, 0, 0);
     padding: 30px;
-    width: 90%; /* Set wrapper width to 90% of the body width */
-    max-width: 1000px; /* Limit maximum width of wrapper */
+    width: 70%; /* Set wrapper width to 90% of the body width */
+    max-width: 800px; /* Limit maximum width of wrapper */
     text-align: center; /* Center align text within wrapper */
     box-sizing: border-box; /* Include padding and border in the width */
     min-height: 70vh; /* Set minimum height of wrapper to 70% of viewport height */

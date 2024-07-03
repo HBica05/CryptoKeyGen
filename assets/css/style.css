@@ -1,18 +1,18 @@
 body {
-    background-color: black; 
+    background-color: rgb(33, 76, 126); 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif; /* Specify a fallback font family */
-    font-size: 16px; /* Set base font size */
+    font-size: 16px; 
   }
   .wrapper {
-    background-color: #3498db;
+    background-color: rgb(0, 0, 0);
     padding: 30px;
     width: 90%; /* Set wrapper width to 90% of the body width */
-    max-width: 900px; /* Limit maximum width of wrapper */
+    max-width: 1000px; /* Limit maximum width of wrapper */
     text-align: center; /* Center align text within wrapper */
     box-sizing: border-box; /* Include padding and border in the width */
     min-height: 70vh; /* Set minimum height of wrapper to 70% of viewport height */
@@ -20,17 +20,21 @@ body {
     flex-direction: column; /* Align content in a column */
     justify-content: center; /* Center content vertically */
   }
-
+  
   .main-heading {
     color: white; 
     margin-top: 0;
     font-size: 2.5rem;  
+    text-align: center;
   }
   .password-output {
     margin-top: 20px;
+    width: 300px;
+    margin: 0 auto;
   }
   .password-output label {
     font-weight: bold;
+    color: white;
   }
   
   .password-output input {
@@ -41,7 +45,7 @@ body {
     box-sizing: border-box;
   }
   
-   form {
+  form {
     margin-top: 20px; 
   }
   label {
@@ -63,6 +67,10 @@ body {
     font-size: 1.2rem;
   }
   button:hover {
-    background-color: #ff0b0b; /* Darken button color on hover */
+    background-color: #5a4d4d; /* Darken button color on hover */
   }
-  
+ .site-message {
+  margin-top: 15px; /* Push the paragraph to the bottom */
+  color: white; /* Text color for site message */
+ }
+ 

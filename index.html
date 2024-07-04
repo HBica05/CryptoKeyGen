@@ -18,10 +18,9 @@
     <!-- Output box for generated password -->
     <div class="password-output">
       <label for="generatedPassword">Generated Password:</label>
-      <input type="text" id="Password" readonly>
+      <input type="text" id="Password" aria-label="password entry" readonly>
     </div>
-
-
+    <div id="message"></div>
     <form id="passwordForm">
       <label for="length">Number of Characters (5-32):</label>
       <input type="number" id="length" name="length" min="5" max="32" required>
@@ -40,7 +39,6 @@
       </p>
     
     </form>
-
   </div>
   <script src="assets/js/script.js"></script>
 </body>

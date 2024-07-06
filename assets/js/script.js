@@ -90,3 +90,11 @@ function loadPasswordHistory() {
 document.addEventListener('DOMContentLoaded', function() {
   loadPasswordHistory();
 });
+
+// Function to clear password history
+function clearPasswordHistory() {
+  const passwordList = document.getElementById('passwordList');
+  passwordList.innerHTML = ''; // Clear password history UI
+  
+  localStorage.removeItem('passwords'); // Clear password history from localStorage
+}

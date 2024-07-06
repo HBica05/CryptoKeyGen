@@ -69,3 +69,10 @@ function addToHistory(password) {
   li.textContent = password;
   passwordList.prepend(li); // Add new password at the beginning of the list
 }
+
+// Function to save password to localStorage
+function saveToLocalStorage(password) {
+  let passwords = JSON.parse(localStorage.getItem('passwords')) || [];
+  passwords.unshift(password); // Add new password at the beginning of the array
+  localStorage.setItem('passwords', JSON.stringify(passwords));
+}

@@ -76,3 +76,10 @@ function saveToLocalStorage(password) {
   passwords.unshift(password); // Add new password at the beginning of the array
   localStorage.setItem('passwords', JSON.stringify(passwords));
 }
+// Function to load password history from localStorage
+function loadPasswordHistory() {
+  const passwords = JSON.parse(localStorage.getItem('passwords')) || [];
+  passwords.forEach(password => {
+    addToHistory(password);
+  });
+}

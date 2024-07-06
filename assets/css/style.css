@@ -81,3 +81,14 @@ button:hover {
 margin-top: 15px; /* Push the paragraph to the bottom */
 color: white; /* Text color for site message */
 }
+.password-history {
+  color: white;
+}
+#passwordList {
+color: white;
+}
+/* Hide bullet points from password history list */
+.password-history ul {
+  list-style-type: none;
+  padding: 0;
+}

@@ -22,6 +22,8 @@ function validateForm(event) {
   }
   const password = createPassword(length, includeSpecialChars, includeCapitalLetters, includeNumbers);
   document.getElementById('Password').value = password;
+  addToHistory(password); // Add to history 
+  saveToLocalStorage(password); // Save to localStorage
 }
 /**
  * docstring...

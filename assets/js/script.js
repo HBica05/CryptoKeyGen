@@ -61,3 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 // initially set the visibilty of the message division to hidden
 message.style.visibility = "hidden";
+
+// Function to add password to history
+function addToHistory(password) {
+  const passwordList = document.getElementById('passwordList');
+  const li = document.createElement('li');
+  li.textContent = password;
+  passwordList.prepend(li); // Add new password at the beginning of the list
+}

@@ -83,3 +83,8 @@ function loadPasswordHistory() {
     addToHistory(password);
   });
 }
+
+// Call loadPasswordHistory on page load
+document.addEventListener('DOMContentLoaded', function() {
+  loadPasswordHistory();
+});

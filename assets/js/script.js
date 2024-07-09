@@ -38,7 +38,7 @@ function validateForm(event) {
   const includeCapitalLetters = capitalLettersCheckbox.checked;
   const includeNumbers = numbersCheckbox.checked;
 
-   // Validate at least one option is selected
+  // Validate at least one option is selected
    if (!includeSpecialChars && !includeCapitalLetters && !includeNumbers) {
     showMessage('Please select at least one option (Special Characters, Capital Letters, or Numbers).');
     return;

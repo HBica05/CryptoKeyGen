@@ -11,7 +11,10 @@
  
   <title>CryptoKeyGen</title>
  <!-- Favicon -->
- <link rel="icon" type="image/svg" href="user-lock-solid.svg">
+ <link rel="icon" type="image/svg" href="favicon/user-lock-solid.svg">
+ <!--Favicon for copy button-->
+ <!--<link rel="icon" type="image/svg" href="favicon/copy-regular.svg">-->
+
 </head>
 <body>
    <!-- Wrapper for the entire content -->
@@ -22,11 +25,13 @@
       <label for="generatedPassword">Generated Password:</label>
       <input type="text" id="Password" aria-label="password entry" readonly>
     </div>
+
     <div id="message"></div>
      <!-- Form for password generation -->
     <form id="passwordForm">
+      <div class="form-group">
       <label for="length">Number of Characters (5-32):</label>
-      <input type="number" id="length" name="length" min="0" max="100" required>
+      <input type="number" id="length" name="length" min="5" max="32" required>
       <br>
       <input type="checkbox" id="specialChars" name="specialChars">
       <label for="specialChars">Special Characters</label>
@@ -36,6 +41,7 @@
       <br>
       <input type="checkbox" id="numbers" name="numbers">
       <label for="numbers">Numbers</label>
+      </div>
       <br>
       <button type="submit">Generate Password</button>
       <p class="site-message">Generate strong and secure passwords with CryptoKeyGen. 

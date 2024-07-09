@@ -38,6 +38,12 @@ function validateForm(event) {
   const includeCapitalLetters = capitalLettersCheckbox.checked;
   const includeNumbers = numbersCheckbox.checked;
 
+   // Validate at least one option is selected
+   if (!includeSpecialChars && !includeCapitalLetters && !includeNumbers) {
+    showMessage('Please select at least one option (Special Characters, Capital Letters, or Numbers).');
+    return;
+  }
+  
   // Validate password length
   if (!isValidLength(length)) {
     showMessage('Password length must be between 5 and 32 characters.');
@@ -112,6 +118,16 @@ function addToHistory(password) {
  li.appendChild(copyButton);
 
  passwordList.prepend(li); // Add new password and copy button at the beginning of the list
+}
+
+// Function to copy password to clipboard
+function copyToClipboard(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
 }
 
 // Function to save the generated password to localStorage

@@ -45,4 +45,8 @@ To use CryptoKeyGen, follow these steps:
 
 ## Acknowledgments
 * Font Awesome (https://fontawesome.com/) for providing icons used in the user interface.
+* My Mentor who guided me during the development of this project.
 * OpenAI for providing the guidance and resources to create this project.
+* My friends and family, who gave me ideas of additional features for my project.
+* The tutorial that gave me inspiration for the project (https://youtu.be/iKo9pDKKHnc?si=flbo-eDxdxyOA0un)
+* I also took some inspiration codes from W3schools(https://www.w3schools.com/)

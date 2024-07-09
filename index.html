@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Strong Password, Password Generator, Safe Password Generator">
+  <meta name="keywords" content="Safe, password, generator">
+    <!-- Link to external CSS stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
+ 
   <title>CryptoKeyGen</title>
-  <!--Add favicon
-  <link rel="icon" type="image/svg" href="user-lock-solid.svg">
-  <i class="fa-solid fa-user-lock" style="color: #000000;"></i>
--->
+ <!-- Favicon -->
+ <link rel="icon" type="image/svg" href="user-lock-solid.svg">
 </head>
 <body>
+   <!-- Wrapper for the entire content -->
   <div class="wrapper">
     <h1 class="main-heading">CryptoKeyGen</h1>
     <!-- Output box for generated password -->
@@ -21,6 +23,7 @@
       <input type="text" id="Password" aria-label="password entry" readonly>
     </div>
     <div id="message"></div>
+     <!-- Form for password generation -->
     <form id="passwordForm">
       <label for="length">Number of Characters (5-32):</label>
       <input type="number" id="length" name="length" min="0" max="100" required>
@@ -38,6 +41,7 @@
       <p class="site-message">Generate strong and secure passwords with CryptoKeyGen. 
       </p>
     </form>
+    <!-- Section for password history -->
     <div class="password-history">
       <h2>Password History</h2>
       <ul id="passwordList" class="password-list"></ul>

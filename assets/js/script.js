@@ -101,7 +101,17 @@ function showMessage(msg) {
 function addToHistory(password) {
   const li = document.createElement('li');
   li.textContent = password;
-  passwordList.prepend(li); // Add new password at the beginning of the list
+
+ // Create copy button
+ const copyButton = document.createElement('button');
+ copyButton.textContent = 'Copy';
+ copyButton.addEventListener('click', function() {
+   copyToClipboard(password);
+   showMessage('Password copied to clipboard!');
+ });
+ li.appendChild(copyButton);
+
+ passwordList.prepend(li); // Add new password and copy button at the beginning of the list
 }
 
 // Function to save the generated password to localStorage

@@ -124,5 +124,5 @@ button:hover {
 /* Style for the password history list */
 #passwordList {
   border: 1px solid #cccccc4c; 
-  padding: 10px; /* Add padding inside the border */
+  padding: 10px;
 }

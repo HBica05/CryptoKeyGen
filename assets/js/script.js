@@ -108,9 +108,9 @@ function addToHistory(password) {
   const li = document.createElement('li');
   li.textContent = password;
 
- // Create copy button with Font Awesome icon
+ // Create copy button
  const copyButton = document.createElement('button');
- copyButton.innerHTML = '<i class="fa-regular fa-copy"></i>';
+ copyButton.textContent= 'Copy'; // Set the button to text to 'Copy'
  copyButton.setAttribute('title', 'Copy Password');
  copyButton.addEventListener('click', function() {
   copyToClipboard(password);

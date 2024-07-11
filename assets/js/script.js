@@ -112,6 +112,7 @@ function addToHistory(password) {
  const copyButton = document.createElement('button');
  copyButton.textContent= 'Copy'; // Set the button to text to 'Copy'
  copyButton.setAttribute('title', 'Copy Password');
+ copyButton.classList.add('copy-button'); // Add the 'copy-button' class
  copyButton.addEventListener('click', function() {
   copyToClipboard(password);
   showMessage('Password copied to clipboard!');

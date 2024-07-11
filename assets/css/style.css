@@ -80,17 +80,24 @@ button:hover {
   text-transform: uppercase;
 }
 .site-message {
-margin-top: 15px; /* Push the paragraph to the bottom */
-color: white; /* Text color for site message */
+  margin-top: 15px; /* Push the paragraph to the bottom */
+  color: white; /* Text color for site message */
 }
 .password-history {
   color: white;
 }
 #passwordList {
-color: white;
+  color: white;
 }
 /* Hide bullet points from password history list */
 .password-history ul {
   list-style-type: none;
   padding: 0;
+}
+.copy-button {
+  background-color: #555; 
+  color: #fff; /* White text color */
+  border: none; /* Remove default border */
+  padding: 5px 10px; /* Add padding */
+  cursor: pointer; /* Change cursor to pointer on hover */
 }

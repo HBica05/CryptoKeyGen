@@ -1,12 +1,18 @@
 # CryptoKeyGen
 CryptoKeyGen is a web-based application designed to generate strong and secure passwords based on user preferences. This README provides an overview of the application's functionality, features, and how to use it effectively.
 
+CryptoKeyGen is a user-friendly password generator web application designed to operate seamlessly across various screen sizes, from small mobile devices to larger desktop screens. Whether you're accessing it on your smartphone, tablet, or computer, CryptoKeyGen ensures a consistent and intuitive experience for generating strong and secure passwords.
+
 ## Features
+* Responsive Design: Adapts to different screen sizes to provide optimal usability.
+  
 * Password Generation: Allows users to generate passwords of varying lengths (between 5 and 32 characters) with options to include special characters, capital letters, and numbers.
 
 * Password History: Maintains a history of generated passwords during the session, which persists across page reloads using localStorage.
   
 * User-Friendly Interface: Clean and responsive design with easy-to-understand form inputs and clear password output.
+
+* Clipboard Copy:  Easily copy generated passwords to your clipboard for immediate use. 
 
 ## Getting started
 To use CryptoKeyGen, follow these steps:

@@ -117,7 +117,7 @@ CryptoKeyGen is a user-friendly password generator web application designed to o
 
   ![Javascript validator](image-18.png)
 * Accessibility test:
-  * I did an accessibility tool test and no errors were detected.
+  * I did an accessibility tool test using (https://wave.webaim.org/) and no errors were detected.
   
   ![Accessibility test](image-20.png)
 

@@ -3,6 +3,8 @@ CryptoKeyGen is a web-based application designed to generate strong and secure p
 
 CryptoKeyGen is a user-friendly password generator web application designed to operate seamlessly across various screen sizes, from small mobile devices to larger desktop screens. Whether you're accessing it on your smartphone, tablet, or computer, CryptoKeyGen ensures a consistent and intuitive experience for generating strong and secure passwords.
 
+![Responsive version of CryptoKeyGen](image-21.png)
+
 # Getting started
 ## Main-heading:
 * It contains the name of the website.
@@ -166,9 +168,6 @@ CryptoKeyGen is a user-friendly password generator web application designed to o
 * Open the IDE of your choice and and paste the copied git url into the IDE terminal.
 * The project is now created as a local clone.
 
-## Wireframe
-* 
-  ![CryptoKeyGen page](image-19.png)
 ## Acknowledgments
 
 * A special thanks to my Mentor Spencer Barriball who guided and supported me during the development of this project.
@@ -184,3 +183,5 @@ CryptoKeyGen is a user-friendly password generator web application designed to o
 * Some inspiration codes were taken from W3schools (https://www.w3schools.com/).
 
 * A big inspiration for my README file was from (https://github.com/SophieTiger/to-do-list.git).
+
+* Screenshots of responsive version taken using (https://www.awesomescreenshot.com/).

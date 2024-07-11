@@ -114,6 +114,10 @@ CryptoKeyGen is a user-friendly password generator web application designed to o
   * I ran a Javascript validator (https://jshint.com/), and 31 warnings were found, but unfortunately they are about Eversions and Mozilla JS extensions, which I cannot do anything about.
 
   ![Javascript validator](image-18.png)
+* Accessibility test:
+  * I did an accessibility tool test and no errors were detected.
+  
+  ![Accessibility test](image-20.png)
 
 * Features Testing
   * I tested selecting only special characters and generate a password.
@@ -162,6 +166,9 @@ CryptoKeyGen is a user-friendly password generator web application designed to o
 * Open the IDE of your choice and and paste the copied git url into the IDE terminal.
 * The project is now created as a local clone.
 
+## Wireframe
+* 
+  ![CryptoKeyGen page](image-19.png)
 ## Acknowledgments
 
 * A special thanks to my Mentor Spencer Barriball who guided and supported me during the development of this project.

@@ -111,3 +111,8 @@ button:hover {
   font-size: 1.1em; /* Adjust font size if needed */
   margin-right: 10px; /* Add margin to the right side of the password text */
 }
+/* Style for the password history list */
+#passwordList {
+  border: 1px solid #cccccc4c; /* Thin grey border */
+  padding: 10px; /* Add padding inside the border */
+}

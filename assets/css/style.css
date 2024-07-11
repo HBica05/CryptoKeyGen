@@ -95,9 +95,19 @@ button:hover {
   padding: 0;
 }
 .copy-button {
-  background-color: #555; 
+  background-color: #282626; 
   color: #fff; /* White text color */
   border: none; /* Remove default border */
   padding: 5px 10px; /* Add padding */
   cursor: pointer; /* Change cursor to pointer on hover */
+  margin-left: 10px; /* Add margin to the left side */
+}
+/* Style for the password history list items */
+#passwordList li {
+  margin-bottom: 5px; /* Add margin between each password item */
+}
+/* Optional: Style for the password text */
+#passwordList li span {
+  font-size: 1.1em; /* Adjust font size if needed */
+  margin-right: 10px; /* Add margin to the right side of the password text */
 }

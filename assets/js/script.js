@@ -107,8 +107,17 @@ function showMessage(msg) {
 function addToHistory(password) {
   const li = document.createElement('li');
   li.textContent = password;
+// Create wrapper div for password and copy button
+  const wrapper = document.createElement('div');
+  wrapper.style.display = 'flex'; // Ensure flex display to align items horizontally
+  wrapper.style.alignItems = 'center'; // Align items vertically
+  
+// Password text
+  const passwordText = document.createElement('span');
+  passwordText.textContent = password;
+  wrapper.appendChild(passwordText);
 
- // Create copy button
+// Create copy button
  const copyButton = document.createElement('button');
  copyButton.textContent= 'Copy'; // Set the button to text to 'Copy'
  copyButton.setAttribute('title', 'Copy Password');

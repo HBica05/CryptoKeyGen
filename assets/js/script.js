@@ -23,15 +23,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to initialize event listeners
 function initializeEventListeners() {
-  document.getElementById('passwordForm').addEventListener('submit', validateForm); // Event listener for form submission
-  document.getElementById('clearHistoryBtn').addEventListener('click', clearPasswordHistory); // Event listener for clearing password history
+  const passwordForm = document.getElementById('passwordForm');
+  if (passwordForm) {
+    passwordForm.addEventListener('submit', validateForm); // Event listener for form submission
+  } else {
+    console.error('Could not find passwordForm element');
+  }
+
+  const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+  if (clearHistoryBtn) {
+    clearHistoryBtn.addEventListener('click', clearPasswordHistory); // Event listener for clearing password history
+  } else {
+    console.error('Could not find clearHistoryBtn element');
+  }
 }
 /**
- * 
+ * Function to validate form input and generate password
  * @param {*} event 
- * @returns 
+ * @returns
  */
-// Function to validate form input and generate password
 function validateForm(event) {
   event.preventDefault(); // Prevent form submission
   message.style.visibility = "hidden"; // Hide any previous error message

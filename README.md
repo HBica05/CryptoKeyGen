@@ -92,8 +92,10 @@ To use CryptoKeyGen, follow these steps:
 
 # Testing 
 * Accessibility
-  * I ran a lighthouse test and 
-  
+  * I ran a lighthouse test for mobile:
+  ![alt text](image-13.png)
+  Desktop:
+![alt text](image-14.png)
   ![alt text](image-11.png)
   Bug for HTML  : 'The value of the for attribute of the label element must be the ID of a non-hidden form control.'
 

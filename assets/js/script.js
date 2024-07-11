@@ -21,7 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
   loadPasswordHistory(); // Load password history from localStorage when the page loads
 });
 
-// Function to initialize event listeners
+/**
+ * Function to initialize event listeners
+ */ 
 function initializeEventListeners() {
   const passwordForm = document.getElementById('passwordForm');
   if (passwordForm) {
@@ -70,20 +72,24 @@ function validateForm(event) {
  * @param {*} includeCapitalLetters 
  * @param {*} includeNumbers 
  * @returns 
+ * Generate password based on user input
  */
-  // Generate password based on user input
   const password = generatePassword(length, includeSpecialChars, includeCapitalLetters, includeNumbers);
   displayPassword(password); // Display generated password
   addToHistory(password); // Add generated password to history
   saveToLocalStorage(password); // Save generated password to localStorage
 }
 
-// Function to check if the password length is valid
+/** 
+ * Function to check if the password length is valid
+ */
 function isValidLength(length) {
   return length >= 5 && length <= 32;
 }
 
-// Function to generate a password based on user preferences
+/** 
+ * Function to generate a password based on user preferences
+ */ 
 function generatePassword(length, includeSpecialChars, includeCapitalLetters, includeNumbers) {
   let charPool = [...letters]; // Start with lowercase letters
 
@@ -113,18 +119,24 @@ function generatePassword(length, includeSpecialChars, includeCapitalLetters, in
   return password;
 }
 
-// Function to display the generated password in the output field
+/**
+ *  Function to display the generated password in the output field
+ */ 
 function displayPassword(password) {
   passwordOutput.value = password;
 }
 
-// Function to show a message in the message area
+/** 
+ * Function to show a message in the message area
+ */ 
 function showMessage(msg) {
   message.innerText = msg;
   message.style.visibility = "visible";
 }
 
-// Function to add the generated password to the password history list
+/** 
+ * Function to add the generated password to the password history list
+ */ 
 function addToHistory(password) {
   const li = document.createElement('li');
   li.textContent = password;
@@ -152,7 +164,9 @@ function addToHistory(password) {
  passwordList.prepend(li); // Add new password and copy button at the beginning of the list
 }
 
-// Function to copy password to clipboard
+/**
+ * Function to copy password to clipboard
+ */
 function copyToClipboard(text) {
   const textarea = document.createElement('textarea');
   textarea.value = text;
@@ -162,14 +176,18 @@ function copyToClipboard(text) {
   document.body.removeChild(textarea);
 }
 
-// Function to save the generated password to localStorage
+/**
+ * Function to save the generated password to localStorage
+ */
 function saveToLocalStorage(password) {
   let passwords = getPasswordsFromLocalStorage(); // Retrieve existing passwords from localStorage
   passwords.unshift(password); // Add new password at the beginning of the array
   localStorage.setItem('passwords', JSON.stringify(passwords)); // Save updated passwords to localStorage
 }
 
-// Function to load password history from localStorage
+/**  
+ * Function to load password history from localStorage
+ */
 function loadPasswordHistory() {
   const passwords = getPasswordsFromLocalStorage(); // Retrieve passwords from localStorage
   passwords.forEach(password => {
@@ -177,12 +195,16 @@ function loadPasswordHistory() {
   });
 }
 
-// Function to retrieve passwords from localStorage
+/** 
+ * Function to retrieve passwords from localStorage
+ */
 function getPasswordsFromLocalStorage() {
   return JSON.parse(localStorage.getItem('passwords')) || []; // Return existing passwords or an empty array if none exist
 }
 
-// Function to clear password history from UI and localStorage
+/** 
+ *  Function to clear password history from UI and localStorage
+ */
 function clearPasswordHistory() {
   passwordList.innerHTML = ''; // Clear password history UI
   localStorage.removeItem('passwords'); // Clear password history from localStorage

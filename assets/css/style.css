@@ -1,6 +1,7 @@
+/* Base styles for the entire page */
 body {
   background-color: rgb(33, 76, 126); 
-  display: flex;
+  display: flex;/* Use flexbox for layout */
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -8,27 +9,29 @@ body {
   font-family: Arial, sans-serif; /* Specify a fallback font family */
   font-size: 16px; 
 }
+/* Wrapper for central content */
 .wrapper {
   background-color: rgb(0, 0, 0);
   padding: 30px;
-  width: 70%; /* Set wrapper width to 90% of the body width */
+  width: 70%; 
   max-width: 800px; /* Limit maximum width of wrapper */
   text-align: center; /* Center align text within wrapper */
-  box-sizing: border-box; /* Include padding and border in the width */
-  min-height: 70vh; /* Set minimum height of wrapper to 70% of viewport height */
+  box-sizing: border-box;
+  min-height: 70vh; 
   display: flex; /* Use flexbox to center content vertically */
-  flex-direction: column; /* Align content in a column */
+  flex-direction: column;
   justify-content: center; /* Center content vertically */
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
 }
-
+/* Styling for the main heading */
 .main-heading {
   color: white; 
   margin-top: 0;
   font-size: 2rem;  
   text-align: center;
 }
+/* Styling for the password output section */
 .password-output {
   margin-top: 20px;
   width: 300px;
@@ -45,62 +48,69 @@ body {
   padding: 8px;
   font-size: 1rem;
   margin-top: 8px;
-  box-sizing: border-box;
+  box-sizing: border-box;/* Include padding and border in the width */
 }
-
+/* Styling for the password generation form */
 form {
   margin-top: 20px; 
 }
-
+/* Styling for labels */
 label {
   color: white; 
   font-size: 1.2rem;
 }
+/* Styling for input fields (number and checkboxes) */
 input[type="number"],
 input[type="checkbox"] {
-  margin-right: 5px; /* Add space between checkbox and label */
+  margin-right: 5px; /* Space between checkbox and label */
   font-size: 1rem;
 }
+/* Styling for the generate password button */
 button {
-  background-color: #757575; /* Set button background color to a green shade */
-  color: white; /* Set button text color to white */
-  padding: 10px 20px; /* Add padding to the button */
-  border: none; /* Remove default button border */
-  cursor: pointer; /* Change cursor to pointer on hover */
-  margin-top: 10px; /* Add space above the button */
+  background-color: #757575; 
+  color: white; 
+  padding: 10px 20px; /* padding inside the button */
+  border: none; /* Remove default border */
+  cursor: pointer; /* pointer  cursor on hover */
+  margin-top: 10px; 
   font-size: 1.2rem;
-  border-radius: 10px; /* Add rounded corners */
+  border-radius: 10px; /* rounded corners */
 }
+/* Button hover state */
 button:hover {
   background-color: #5a4d4d; /* Darken button color on hover */
 }
+/* Styling for warning or status messages */
 #message {
   color: red;
   font-weight: bold;
   text-transform: uppercase;
 }
+/* Styling for site message below the generate button */
 .site-message {
-  margin-top: 15px; /* Push the paragraph to the bottom */
-  color: white; /* Text color for site message */
+  margin-top: 15px; /* paragraph to the bottom */
+  color: white; 
 }
 .password-history {
   color: white;
 }
+/* Styling for the password history list */
 #passwordList {
   color: white;
 }
 /* Hide bullet points from password history list */
 .password-history ul {
-  list-style-type: none;
+  list-style-type: none;/* No bullet points */
   padding: 0;
 }
+/* Styling for the copy button */
 .copy-button {
   background-color: #282626; 
-  color: #fff; /* White text color */
+  color: #fff; 
   border: none; /* Remove default border */
   padding: 5px 10px; /* Add padding */
   cursor: pointer; /* Change cursor to pointer on hover */
-  margin-left: 10px; /* Add margin to the left side */
+  margin-left: 10px;
 }
 /* Style for the password history list items */
 #passwordList li {
@@ -113,6 +123,6 @@ button:hover {
 }
 /* Style for the password history list */
 #passwordList {
-  border: 1px solid #cccccc4c; /* Thin grey border */
+  border: 1px solid #cccccc4c; 
   padding: 10px; /* Add padding inside the border */
 }

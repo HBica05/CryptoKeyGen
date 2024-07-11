@@ -95,7 +95,7 @@ To use CryptoKeyGen, follow these steps:
   * I ran a lighthouse test and 
   
   ![alt text](image-11.png)
-  Bug : 'The value of the for attribute of the label element must be the ID of a non-hidden form control.'
+  Bug for HTML  : 'The value of the for attribute of the label element must be the ID of a non-hidden form control.'
 
   ![alt text](image-12.png)
 ## Acknowledgments

@@ -1,4 +1,4 @@
-"use strict";// set parsing and error handling rules
+`'use strict'` ;// set parsing and error handling rules
 
 // Constants for character pools
 const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
@@ -26,7 +26,11 @@ function initializeEventListeners() {
   document.getElementById('passwordForm').addEventListener('submit', validateForm); // Event listener for form submission
   document.getElementById('clearHistoryBtn').addEventListener('click', clearPasswordHistory); // Event listener for clearing password history
 }
-
+/**
+ * 
+ * @param {*} event 
+ * @returns 
+ */
 // Function to validate form input and generate password
 function validateForm(event) {
   event.preventDefault(); // Prevent form submission
@@ -49,7 +53,14 @@ function validateForm(event) {
     showMessage('Password length must be between 5 and 32 characters.');
     return;
   }
-
+/**
+ * docstring...
+ * @param {*} length 
+ * @param {*} includeSpecialChars 
+ * @param {*} includeCapitalLetters 
+ * @param {*} includeNumbers 
+ * @returns 
+ */
   // Generate password based on user input
   const password = generatePassword(length, includeSpecialChars, includeCapitalLetters, includeNumbers);
   displayPassword(password); // Display generated password

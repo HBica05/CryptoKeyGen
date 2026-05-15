@@ -1,212 +1,272 @@
-`'use strict'` ;// set parsing and error handling rules
+'use strict';
 
-// Constants for character pools
-const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+// =============================================
+// CHARACTER POOLS
+// =============================================
+const letters       = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const capitalLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const specialChars = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '[', ']', '{', '}', ';', ':', "'", '"', ',', '.', '<', '>', '/', '?', '|', '~'];
-const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+const specialChars  = ['!','@','#','$','%','^','&','*','(',')','-','_','=','+','[',']','{','}',';',':','\'','"',',','.','<','>','/','?','|','~'];
+const numbers       = ['0','1','2','3','4','5','6','7','8','9'];
 
-// DOM elements
-const lengthInput = document.getElementById('length');
-const specialCharsCheckbox = document.getElementById('specialChars');
-const capitalLettersCheckbox = document.getElementById('capitalLetters');
-const numbersCheckbox = document.getElementById('numbers');
-const message = document.getElementById('message');
-const passwordOutput = document.getElementById('Password');
-const passwordList = document.getElementById('passwordList');
+// =============================================
+// DOM ELEMENTS
+// =============================================
+const lengthInput             = document.getElementById('length');
+const lengthSlider            = document.getElementById('lengthSlider');
+const specialCharsCheckbox    = document.getElementById('specialChars');
+const capitalLettersCheckbox  = document.getElementById('capitalLetters');
+const numbersCheckbox         = document.getElementById('numbers');
+const message                 = document.getElementById('message');
+const passwordOutput          = document.getElementById('Password');
+const passwordList            = document.getElementById('passwordList');
+const historyEmpty            = document.getElementById('historyEmpty');
+const strengthFill            = document.getElementById('strengthFill');
+const strengthText            = document.getElementById('strengthText');
 
-// Event listener initialization when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-  initializeEventListeners(); // Initialize event listeners for form submission and history clearing
-  loadPasswordHistory(); // Load password history from localStorage when the page loads
+// Store last used options for the refresh button
+let lastOptions = null;
+
+// =============================================
+// INIT
+// =============================================
+document.addEventListener('DOMContentLoaded', function () {
+  initializeEventListeners();
+  loadPasswordHistory();
+  updateHistoryEmpty();
 });
 
-/**
- * Function to initialize event listeners
- */ 
 function initializeEventListeners() {
   const passwordForm = document.getElementById('passwordForm');
   if (passwordForm) {
-    passwordForm.addEventListener('submit', validateForm); // Event listener for form submission
+    passwordForm.addEventListener('submit', validateForm);
   } else {
     console.error('Could not find passwordForm element');
   }
 
   const clearHistoryBtn = document.getElementById('clearHistoryBtn');
   if (clearHistoryBtn) {
-    clearHistoryBtn.addEventListener('click', clearPasswordHistory); // Event listener for clearing password history
+    clearHistoryBtn.addEventListener('click', clearPasswordHistory);
   } else {
     console.error('Could not find clearHistoryBtn element');
   }
 }
-/**
- * Function to validate form input and generate password
- * @param {*} event 
- * @returns
- */
+
+// =============================================
+// SLIDER / NUMBER INPUT SYNC
+// =============================================
+function syncLength(value) {
+  lengthInput.value = value;
+}
+
+function syncSlider(value) {
+  const clamped = Math.min(32, Math.max(5, parseInt(value) || 5));
+  lengthSlider.value = clamped;
+}
+
+// =============================================
+// FORM VALIDATION & GENERATE
+// =============================================
 function validateForm(event) {
-  event.preventDefault(); // Prevent form submission
-  message.style.visibility = "hidden"; // Hide any previous error message
+  event.preventDefault();
+  clearMessage();
 
-  // Retrieve input values
-  const length = parseInt(lengthInput.value);
-  const includeSpecialChars = specialCharsCheckbox.checked;
+  const length               = parseInt(lengthInput.value);
+  const includeSpecialChars  = specialCharsCheckbox.checked;
   const includeCapitalLetters = capitalLettersCheckbox.checked;
-  const includeNumbers = numbersCheckbox.checked;
+  const includeNumbers       = numbersCheckbox.checked;
 
-  // Validate at least one option is selected
-   if (!includeSpecialChars && !includeCapitalLetters && !includeNumbers) {
+  if (!includeSpecialChars && !includeCapitalLetters && !includeNumbers) {
     showMessage('Please select at least one option (Special Characters, Capital Letters, or Numbers).');
     return;
   }
-  
-  // Validate password length
+
   if (!isValidLength(length)) {
     showMessage('Password length must be between 5 and 32 characters.');
     return;
   }
-/**
- * docstring...
- * @param {*} length 
- * @param {*} includeSpecialChars 
- * @param {*} includeCapitalLetters 
- * @param {*} includeNumbers 
- * @returns 
- * Generate password based on user input
- */
+
+  // Save options for refresh
+  lastOptions = { length, includeSpecialChars, includeCapitalLetters, includeNumbers };
+
   const password = generatePassword(length, includeSpecialChars, includeCapitalLetters, includeNumbers);
-  displayPassword(password); // Display generated password
-  addToHistory(password); // Add generated password to history
-  saveToLocalStorage(password); // Save generated password to localStorage
+  displayPassword(password);
+  updateStrength(password);
+  addToHistory(password);
+  saveToLocalStorage(password);
+  updateHistoryEmpty();
 }
 
-/** 
- * Function to check if the password length is valid
- */
 function isValidLength(length) {
   return length >= 5 && length <= 32;
 }
 
-/** 
- * Function to generate a password based on user preferences
- */ 
+// =============================================
+// GENERATE PASSWORD
+// =============================================
 function generatePassword(length, includeSpecialChars, includeCapitalLetters, includeNumbers) {
-  let charPool = [...letters]; // Start with lowercase letters
+  let charPool = [...letters];
 
-  // Include special characters if selected
-  if (includeSpecialChars) {
-    charPool = charPool.concat(specialChars);
-  }
-
-  // Include capital letters if selected
-  if (includeCapitalLetters) {
-    charPool = charPool.concat(capitalLetters);
-  }
-
-  // Include numbers if selected
-  if (includeNumbers) {
-    charPool = charPool.concat(numbers);
-  }
+  if (includeSpecialChars)   charPool = charPool.concat(specialChars);
+  if (includeCapitalLetters) charPool = charPool.concat(capitalLetters);
+  if (includeNumbers)        charPool = charPool.concat(numbers);
 
   let password = '';
-
-  // Generate password of specified length
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * charPool.length);
     password += charPool[randomIndex];
   }
-
   return password;
 }
 
-/**
- *  Function to display the generated password in the output field
- */ 
+// =============================================
+// DISPLAY & STRENGTH METER
+// =============================================
 function displayPassword(password) {
   passwordOutput.value = password;
 }
 
-/** 
- * Function to show a message in the message area
- */ 
-function showMessage(msg) {
-  message.innerText = msg;
-  message.style.visibility = "visible";
+function updateStrength(password) {
+  const score = getStrengthScore(password);
+  const levels = [
+    { label: 'Weak',    color: '#ff4d6d', width: '25%'  },
+    { label: 'Fair',    color: '#ffb84d', width: '50%'  },
+    { label: 'Good',    color: '#6c63ff', width: '75%'  },
+    { label: 'Strong',  color: '#00d4aa', width: '100%' },
+  ];
+  const level = levels[Math.min(score, 3)];
+  strengthFill.style.width           = level.width;
+  strengthFill.style.backgroundColor = level.color;
+  strengthText.textContent           = level.label;
+  strengthText.style.color           = level.color;
 }
 
-/** 
- * Function to add the generated password to the password history list
- */ 
+function getStrengthScore(password) {
+  let score = 0;
+  if (password.length >= 12) score++;
+  if (password.length >= 20) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[^a-zA-Z0-9]/.test(password)) score++;
+  return Math.min(Math.floor(score / 1.5), 3);
+}
+
+// =============================================
+// COPY & REFRESH (header buttons)
+// =============================================
+function copyOutput() {
+  const val = passwordOutput.value;
+  if (!val) return;
+  copyToClipboard(val);
+  showMessage('✓ Copied to clipboard!', true);
+  const btn = document.getElementById('copyOutputBtn');
+  btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+  setTimeout(() => { btn.innerHTML = '<i class="fa-regular fa-copy"></i>'; }, 1500);
+}
+
+function refreshPassword() {
+  if (!lastOptions) {
+    showMessage('Generate a password first.');
+    return;
+  }
+  const { length, includeSpecialChars, includeCapitalLetters, includeNumbers } = lastOptions;
+  const password = generatePassword(length, includeSpecialChars, includeCapitalLetters, includeNumbers);
+  displayPassword(password);
+  updateStrength(password);
+  addToHistory(password);
+  saveToLocalStorage(password);
+  updateHistoryEmpty();
+}
+
+// =============================================
+// MESSAGES
+// =============================================
+function showMessage(msg, isSuccess = false) {
+  message.textContent = msg;
+  message.className   = isSuccess ? 'success' : '';
+  if (isSuccess) {
+    setTimeout(clearMessage, 2000);
+  }
+}
+
+function clearMessage() {
+  message.textContent = '';
+  message.className   = '';
+}
+
+// =============================================
+// HISTORY
+// =============================================
 function addToHistory(password) {
   const li = document.createElement('li');
-  li.textContent = password;
-  
-// Create wrapper div for password and copy button
-  const wrapper = document.createElement('div');
-  wrapper.style.display = 'flex'; // Ensure flex display to align items horizontally
-  wrapper.style.alignItems = 'center'; // Align items vertically
-  
-// Password text
+
   const passwordText = document.createElement('span');
   passwordText.textContent = password;
-  wrapper.appendChild(passwordText);
+  li.appendChild(passwordText);
 
-// Create copy button
- const copyButton = document.createElement('button');
- copyButton.textContent= 'Copy'; // Set the button to text to 'Copy'
- copyButton.setAttribute('title', 'Copy Password');
- copyButton.classList.add('copy-button'); // Add the 'copy-button' class
- copyButton.addEventListener('click', function() {
-  copyToClipboard(password);
-  showMessage('Password copied to clipboard!');
- });
- li.appendChild(copyButton);
+  const copyButton = document.createElement('button');
+  copyButton.textContent = 'Copy';
+  copyButton.setAttribute('title', 'Copy password');
+  copyButton.classList.add('copy-button');
+  copyButton.addEventListener('click', function () {
+    copyToClipboard(password);
+    copyButton.textContent = 'Copied!';
+    setTimeout(() => { copyButton.textContent = 'Copy'; }, 1500);
+  });
+  li.appendChild(copyButton);
 
- passwordList.prepend(li); // Add new password and copy button at the beginning of the list
+  passwordList.prepend(li);
 }
 
-/**
- * Function to copy password to clipboard
- */
+function updateHistoryEmpty() {
+  if (historyEmpty) {
+    historyEmpty.style.display = passwordList.children.length === 0 ? 'block' : 'none';
+  }
+}
+
+// =============================================
+// CLIPBOARD
+// =============================================
 function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
   const textarea = document.createElement('textarea');
   textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity  = '0';
   document.body.appendChild(textarea);
   textarea.select();
   document.execCommand('copy');
   document.body.removeChild(textarea);
 }
 
-/**
- * Function to save the generated password to localStorage
- */
+// =============================================
+// LOCAL STORAGE
+// =============================================
 function saveToLocalStorage(password) {
-  let passwords = getPasswordsFromLocalStorage(); // Retrieve existing passwords from localStorage
-  passwords.unshift(password); // Add new password at the beginning of the array
-  localStorage.setItem('passwords', JSON.stringify(passwords)); // Save updated passwords to localStorage
+  let passwords = getPasswordsFromLocalStorage();
+  passwords.unshift(password);
+  passwords = passwords.slice(0, 20); // Keep max 20
+  localStorage.setItem('passwords', JSON.stringify(passwords));
 }
 
-/**  
- * Function to load password history from localStorage
- */
 function loadPasswordHistory() {
-  const passwords = getPasswordsFromLocalStorage(); // Retrieve passwords from localStorage
-  passwords.forEach(password => {
-    addToHistory(password); // Add each password to the history list
-  });
+  const passwords = getPasswordsFromLocalStorage();
+  passwords.forEach(password => addToHistory(password));
 }
 
-/** 
- * Function to retrieve passwords from localStorage
- */
 function getPasswordsFromLocalStorage() {
-  return JSON.parse(localStorage.getItem('passwords')) || []; // Return existing passwords or an empty array if none exist
+  return JSON.parse(localStorage.getItem('passwords')) || [];
 }
 
-/** 
- *  Function to clear password history from UI and localStorage
- */
 function clearPasswordHistory() {
-  passwordList.innerHTML = ''; // Clear password history UI
-  localStorage.removeItem('passwords'); // Clear password history from localStorage
+  passwordList.innerHTML = '';
+  localStorage.removeItem('passwords');
+  updateHistoryEmpty();
+  showMessage('History cleared.', true);
 }

@@ -1,56 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Strong Password, Password Generator, Safe Password Generator">
-  <meta name="keywords" content="Safe, password, generator">
-    <!-- Link to external CSS stylesheets -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- 
-  <title>CryptoKeyGen</title>
- <!-- Favicon -->
- <link rel="icon" type="image/svg" href="favicon/user-lock-solid.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CryptoKeyGen — Generate strong, secure passwords instantly." />
+  <meta name="keywords" content="safe, password, generator, secure, cryptography" />
+  <title>CryptoKeyGen 🔐</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg" href="favicon/user-lock-solid.svg" />
 </head>
 <body>
-   <!-- Wrapper for the entire content -->
+
+  <!-- Animated background grid -->
+  <div class="bg-grid"></div>
+
   <div class="wrapper">
-    <h1 class="main-heading">CryptoKeyGen</h1>
-    <!-- Output box for generated password -->
-    <div class="password-output">
-      <label for="Password">Generated Password:</label>
-      <input type="text" id="Password" aria-label="password entry" readonly>
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <i class="fa-solid fa-lock logo-icon"></i>
+        <h1>CryptoKeyGen</h1>
+      </div>
+      <p class="tagline">Generate strong, secure passwords in seconds.</p>
+    </header>
+
+    <!-- Password Output -->
+    <div class="password-output-card">
+      <label for="Password" class="output-label">Generated Password</label>
+      <div class="output-row">
+        <input type="text" id="Password" aria-label="Generated password" readonly placeholder="Your password will appear here..." />
+        <button class="icon-btn" id="copyOutputBtn" title="Copy password" onclick="copyOutput()">
+          <i class="fa-regular fa-copy"></i>
+        </button>
+        <button class="icon-btn" id="refreshBtn" title="Generate new password" onclick="refreshPassword()">
+          <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+      </div>
+
+      <!-- Strength meter -->
+      <div class="strength-row">
+        <span class="strength-label">Strength:</span>
+        <div class="strength-bar">
+          <div class="strength-fill" id="strengthFill"></div>
+        </div>
+        <span class="strength-text" id="strengthText">—</span>
+      </div>
     </div>
 
-    <div id="message"></div>
-     <!-- Form for password generation -->
-    <form id="passwordForm">
-      <div class="form-group">
-      <label for="length">Number of Characters (5-32):</label>
-      <input type="number" id="length" name="length" min="5" max="32" required>
-      <br>
-      <input type="checkbox" id="specialChars" name="specialChars">
-      <label for="specialChars">Special Characters</label>
-      <br>
-      <input type="checkbox" id="capitalLetters" name="capitalLetters">
-      <label for="capitalLetters">Capital Letters</label>
-      <br>
-      <input type="checkbox" id="numbers" name="numbers">
-      <label for="numbers">Numbers</label>
+    <!-- Message -->
+    <div id="message" role="alert" aria-live="polite"></div>
+
+    <!-- Form -->
+    <form id="passwordForm" class="options-card" novalidate>
+
+      <!-- Length slider -->
+      <div class="option-row length-row">
+        <label for="length">
+          <i class="fa-solid fa-ruler-horizontal"></i> Length
+        </label>
+        <div class="length-controls">
+          <input type="range" id="lengthSlider" min="5" max="32" value="12" oninput="syncLength(this.value)" />
+          <input type="number" id="length" name="length" min="5" max="32" value="12" required oninput="syncSlider(this.value)" />
+        </div>
       </div>
-      <br>
-      <button type="submit">Generate Password</button>
-      <p class="site-message">Generate strong and secure passwords with CryptoKeyGen. 
-      </p>
+
+      <!-- Checkboxes -->
+      <div class="option-row">
+        <label><i class="fa-solid fa-at"></i> Options</label>
+        <div class="checkbox-group">
+
+          <label class="toggle-label" for="specialChars">
+            <input type="checkbox" id="specialChars" name="specialChars" />
+            <span class="toggle-track">
+              <span class="toggle-thumb"></span>
+            </span>
+            Special Characters <span class="example">!@#$%</span>
+          </label>
+
+          <label class="toggle-label" for="capitalLetters">
+            <input type="checkbox" id="capitalLetters" name="capitalLetters" />
+            <span class="toggle-track">
+              <span class="toggle-thumb"></span>
+            </span>
+            Capital Letters <span class="example">A–Z</span>
+          </label>
+
+          <label class="toggle-label" for="numbers">
+            <input type="checkbox" id="numbers" name="numbers" />
+            <span class="toggle-track">
+              <span class="toggle-thumb"></span>
+            </span>
+            Numbers <span class="example">0–9</span>
+          </label>
+
+        </div>
+      </div>
+
+      <button type="submit" class="generate-btn">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Password
+      </button>
+
     </form>
-    <!-- Section for password history -->
-    <div class="password-history">
-      <h2>Password History</h2>
-      <ul id="passwordList" class="password-list"></ul>
-      <button id="clearHistoryBtn">Clear History</button>
+
+    <!-- Password History -->
+    <div class="history-card">
+      <div class="history-header">
+        <h2><i class="fa-solid fa-clock-rotate-left"></i> History</h2>
+        <button id="clearHistoryBtn" class="clear-btn">
+          <i class="fa-solid fa-trash"></i> Clear
+        </button>
+      </div>
+      <ul id="passwordList" class="password-list" aria-label="Password history"></ul>
+      <p class="history-empty" id="historyEmpty">No passwords generated yet.</p>
     </div>
+
+    <footer class="app-footer">
+      <p><i class="fa-solid fa-shield-halved"></i> Passwords are generated locally and never stored on a server.</p>
+    </footer>
+
   </div>
+
   <script src="assets/js/script.js"></script>
 </body>
 </html>
